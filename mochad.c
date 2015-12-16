@@ -638,16 +638,25 @@ static int mydaemon(void)
             InEndpoint, OutEndpoint);
 
     r = do_init();
-    if (r < 0)
+    if (r < 0) {
+        syslog(LOG_EMERG, "do_init failed: %d", r);
+        dbprintf("do_init failed:  %d\n", r);
         goto out_deinit;
+    }
 
     r = alloc_transfers();
-    if (r < 0)
+    if (r < 0) {
+        syslog(LOG_EMERG, "alloc_transfers failed: %d", r);
+        dbprintf("alloc_transfers failed:  %d\n", r);
         goto out_deinit;
+    }
 
     r = start_transfers();
-    if (r < 0)
+    if (r < 0) {
+        syslog(LOG_EMERG, "start_transfers failed: %d", r);
+        dbprintf("start_transfers failed:  %d\n", r);
         goto out_deinit;
+	}
 
     sigact.sa_handler = sighandler;
     sigemptyset(&sigact.sa_mask);
