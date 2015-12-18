@@ -2,6 +2,9 @@
 Description=Mochad X10 TCP gateway
 After=syslog.target
 After=sockets.target
+After=network.target
 
 [Service]
+Type=forking
+GuessMainPID=true
 ExecStart=/usr/local/bin/mochad

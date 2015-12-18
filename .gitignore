@@ -18,3 +18,4 @@ config.h*
 configure
 compile
 install-sh
+mochad
