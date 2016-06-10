@@ -1,0 +1,9 @@
+[Unit]
+Description=Start mochad service
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/mochad
+
+[Install]
+WantedBy=multi-user.target
